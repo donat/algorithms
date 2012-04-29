@@ -10,7 +10,7 @@ import sys
 # num of items on the first rod
 K = raw_input("Number of disks on the left rod:")
 try:
-    K = int (K)
+    K = int(K)
     if K <= 0:
 	raise Exception
     K = K - 1
@@ -19,19 +19,19 @@ except:
     exit(1)
 
 # rods
-A = range(K+1)[::-1]
+A = range(K + 1)[::-1]
 B = []
 C = []
 
 def display():
-    """ display the current state of the towers """
+    """ Display the current state of the towers. """
     print A
     print B
     print C
     print '-----------------'
 
 def move(num, source, dest):
-    """move one disk"""
+    """ Move one disk. """
     if source[-1] != num:
         raise Exception('invalid')
     del(source[-1])
@@ -41,26 +41,26 @@ def move(num, source, dest):
 
 
 def check():
-    """check if the tower is in an invalid state """
+    """ check if the tower is in an invalid state. """
     check_tower(A)
     check_tower(B)
     check_tower(C)
 
 def check_tower(T):
-    """ Check if a state is valid (there is no bigger disk in a smaller one). """
-    for i in range(len(T)-1):
-        if T[i] <= T[i+1]:
+    """ Check if a state is valid (there is no bigger disk in a smaller one).. """
+    for i in range(len(T) - 1):
+        if T[i] <= T[i + 1]:
             raise Exception('invalid state')
     
 
 def hanoi(disk, source, dest, spare):
-    """ Solves hanoi towers """
+    """ Solves hanoi towers. """
     if disk == 0:
         move(disk, source, dest)
     else:
-        hanoi(disk-1, source, spare, dest)
+        hanoi(disk - 1, source, spare, dest)
         move(disk, source, dest)
-        hanoi(disk-1,spare, dest, source)
+        hanoi(disk - 1, spare, dest, source)
 
 # display initial state
 display()
